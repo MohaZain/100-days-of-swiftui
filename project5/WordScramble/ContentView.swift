@@ -31,6 +31,11 @@ struct ContentView: View {
                 .navigationTitle(rootWord)
                 .onAppear(perform: startGame)
             }
+            .navigationBarItems(leading:
+                Button(action : startGame) {
+                  Text("Start Over")
+                })
+            
         }
         .alert(isPresented: $showingError) {
             Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
@@ -82,6 +87,14 @@ struct ContentView: View {
         return true
     }
     func isReal(word: String) -> Bool {
+//        not disallowd word less theen 4
+        if word.count < 4 {
+            return false
+        }
+//        Compare first letter of input word with the root if they r same return false
+        if word[word.startIndex] == rootWord[rootWord.startIndex] {
+            return false
+        }
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
