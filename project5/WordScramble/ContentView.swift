@@ -16,6 +16,13 @@ struct ContentView: View {
     @State private var errorTitle = ""
     @State private var errorMessage = ""
     @State private var showingError = false
+    @State private var countLetter_in_word = 0
+    @State private var listCount = 0
+    var scoreCount:Int {
+        
+        let scorePoint = countLetter_in_word
+        return scorePoint
+    }
     var body: some View {
         NavigationView {
             VStack {
@@ -28,6 +35,7 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text("Dynamic row \($0)")
                 }
+                Text("Your Score is : \(scoreCount)>>>\(countLetter_in_word)")
                 .navigationTitle(rootWord)
                 .onAppear(perform: startGame)
             }
@@ -67,6 +75,9 @@ struct ContentView: View {
         }
 
         usedWords.insert(answer, at: 0)
+        countLetter_in_word += newWord.count
+        listCount = usedWords.count
+        
         newWord = ""
     }
     
@@ -92,7 +103,7 @@ struct ContentView: View {
             return false
         }
 //        Compare first letter of input word with the root if they r same return false
-        if word[word.startIndex] == rootWord[rootWord.startIndex] {
+        if word == rootWord {
             return false
         }
         let checker = UITextChecker()
