@@ -6,7 +6,31 @@
 //
 
 import SwiftUI
+struct DrawText: ViewModifier {
+    let font = Font.system(size: 22, weight: .heavy, design: .default)
+    
+    func body(content: Content) -> some View {
+        content
+        .font(font)
+    }
+}
 
+struct DrawHorizontalText: View {
+    var text: String
+    var textResult: String
+    
+    var body: some View {
+        HStack {
+            Text(text)
+            .modifier(DrawText())
+                .foregroundColor(Color.green)
+            
+            Text(textResult)
+            .modifier(DrawText())
+                .foregroundColor(Color.red)
+        }
+    }
+}
 struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
@@ -17,7 +41,7 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     @State private var countLetter_in_word = 0
-    @State private var listCount = 0
+    @State private var listCount:Int = 0
     var scoreCount:Int {
         
         let scorePoint = countLetter_in_word
@@ -35,7 +59,8 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text("Dynamic row \($0)")
                 }
-                Text("Your Score is : \(scoreCount)>>>\(countLetter_in_word)")
+                Text("Your Score is : \(scoreCount)>>>\(listCount)")
+                DrawHorizontalText(text: "Score: ", textResult: "\(scoreCount)")
                 .navigationTitle(rootWord)
                 .onAppear(perform: startGame)
             }
