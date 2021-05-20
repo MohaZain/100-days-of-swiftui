@@ -7,21 +7,44 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var anmationAmount : CGFloat = 1
-    var body: some View {
+struct CornerRotateModifier: ViewModifier {
+    let amount: Double
+    let anchor: UnitPoint
 
-        Button("Tap me"){
-            self.anmationAmount += 1
+    func body(content: Content) -> some View {
+        content.rotationEffect(.degrees(amount), anchor: anchor).clipped()
+    }
+}
+extension AnyTransition {
+    static var pivot: AnyTransition {
+        .modifier(
+            active: CornerRotateModifier(amount: -90, anchor: .topLeading),
+            identity: CornerRotateModifier(amount: 0, anchor: .topLeading)
+        )
+    }
+}
+struct ContentView: View {
+//    @State private var dragAmount = CGSize.zero
+//    @State private var enabled = false
+    @State private var isShowingRed = true
+
+
+    var body: some View {
+        VStack {
+            Button("Tap Me") {
+                // do nothing
+                withAnimation {
+                    self.isShowingRed.toggle()
+                }
+            }
+
+            if isShowingRed {
+                Rectangle()
+                    .fill(Color.red)
+                    .frame(width: 200, height: 200)
+                    .transition(.pivot)
+            }
         }
-        .padding()
-        .background(Color.red)
-        .foregroundColor(.white)
-        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-        .scaleEffect(anmationAmount)
-        .animation(.default)
-        .blur(radius: (anmationAmount - 1) * 3)
-        
     }
 }
 
