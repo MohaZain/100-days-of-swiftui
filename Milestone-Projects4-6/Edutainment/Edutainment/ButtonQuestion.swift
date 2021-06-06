@@ -47,7 +47,7 @@ struct ButtonQuestion: View {
                         .frame(width: 100,height: 68)
                         .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.red, lineWidth: 4)
+                                    .stroke(Color.red, lineWidth: 1)
                             )
 //                        .animation(.easeIn)
                         .opacity(animationFade[0] ? 1 : 0.35)
@@ -64,7 +64,7 @@ struct ButtonQuestion: View {
                     .frame(width: 100,height: 70,alignment: .center)
                     .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.blue, lineWidth: 4)
+                                .stroke(Color.blue, lineWidth: 1)
                         )
 //                    .animation(.easeIn)
                     .opacity(animationFade[1] ? 1 : 0.35)
@@ -85,7 +85,7 @@ struct ButtonQuestion: View {
 //                                .border(Color.gray, width: 1)
                     .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.green, lineWidth: 4)
+                                .stroke(Color.green, lineWidth: 1)
                         )
                     .animation(.easeIn)
                     .opacity(animationFade[2] ? 1 : 0.35)
@@ -99,17 +99,17 @@ struct ButtonQuestion: View {
                     HStack {
                         Text("ALL THE QUESTIONS") 
                             .font(.system(size: 24))
-                            .fontWeight(.bold)
-                            .font(.system(.largeTitle, design: .rounded))
-                            .foregroundColor(.red)
-                            .shadow(color: .red, radius: 1)
+//                            .fontWeight(.bold)
+                            .font(.system(.title, design: .rounded))
+                            .foregroundColor(.orange)
+//                            .shadow(color: .red, radius: 1)
 //                        CapsuleImage(image_name : "num8")
 //                        CapsuleImage(image_name : "num0")
                     }
                             .frame(width: 350,height: 68)
                             .overlay(
                                     RoundedRectangle(cornerRadius: 16)
-                                        .stroke(Color.yellow, lineWidth: 4)
+                                        .stroke(Color.yellow, lineWidth: 1)
                                 )
                             .animation(.easeIn)
                             .opacity(animationFade[3] ? 1 : 0.35)

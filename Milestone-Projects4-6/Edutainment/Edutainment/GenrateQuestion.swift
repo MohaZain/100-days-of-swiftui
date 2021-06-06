@@ -145,10 +145,10 @@ struct GenrateQuestion:View {
 //                    Text("\(questionsList[count].text)")
                     textFont(text: "       \(questionsList[count].text)", color: "red")
                     TextField("Here", text: $uAnswer, onCommit: CheckAnswer)
-                        .keyboardType(.numberPad)
                         .font(.largeTitle)
                         .foregroundColor(.blue)
                         .frame(width: 100.0, height: 40)
+                        .keyboardType(.numberPad)
                 }
                 Spacer(minLength: 180)
 
