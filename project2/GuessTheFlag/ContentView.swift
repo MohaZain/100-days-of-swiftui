@@ -103,11 +103,11 @@ struct ContentView: View {
                     
                 }
             }
-//        .alert(isPresented: $showingScore) {
-//            Alert(title: Text(scoreTitle), message: Text(message), dismissButton: .default(Text("Continue")) {
-//                self.askQuestion()
-//            })
-//        }
+        .alert(isPresented: $showingScore) {
+            Alert(title: Text(scoreTitle), message: Text(message), dismissButton: .default(Text("Continue")) {
+                self.askQuestion()
+            })
+        }
         
         }
     func flagTapped(_ number: Int) {
