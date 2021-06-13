@@ -46,10 +46,6 @@ struct ContentView: View {
                     }, label: {
                         HStack {
                             textFont(text: "START", color: "blue")
-//                            CapsuleImage(image_name : "n")
-//                            CapsuleImage(image_name : "t")
-//                            CapsuleImage(image_name : "x")
-//                            CapsuleImage(image_name : "t")
                         }
                         .frame(width: 190,height: 80,alignment: .center)
     //                                .border(Color.gray, width: 1)
@@ -64,8 +60,14 @@ struct ContentView: View {
                 else{
 //                    <<<<<<<<<<<<<<PLAYING THE GAME HERE! AKA QUEZ START>>>>>>>>>>>>>>>>
                     GenrateQuestion(table: tappCount, numberOfQuestions: qNum, count1: 0)
+                    }
+//                    .sheet(isPresented: $isGameStart, content: {
+//                        GenrateQuestion(table: tappCount, numberOfQuestions: qNum, count1: 0)
+//                    })
+//                    .background(Color.black.opacity(0.05)).ignoresSafeArea()
+//                    GenrateQuestion(table: tappCount, numberOfQuestions: qNum, count1: 0)
 //                    Spacer()
-                }
+//                }
                 Spacer()
         } //end OF first VStack
     }//end of body
