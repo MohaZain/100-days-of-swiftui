@@ -10,6 +10,8 @@ import SwiftUI
 struct AddView: View {
         @ObservedObject var expenses: Expense
         @Environment(\.presentationMode) var presentationMode
+//    Challenge 3
+        @State var alertWrong = false
     
         @State var name : String = ""
         @State var type : String = "Personal"
@@ -25,7 +27,7 @@ struct AddView: View {
                         ForEach(Self.types, id: \.self){
                             Text($0)
                         }
-                    }// type end
+                    }// picker type end
                     TextField("Amount", text: $amount)
                         .keyboardType(.numberPad)
                 }
@@ -35,8 +37,16 @@ struct AddView: View {
                         self.expenses.items.append(item)
                         self.presentationMode.wrappedValue.dismiss()
                     }
+                    else {alertWrong = true}
                 })
-                
+//                Challenge 3
+                .alert(isPresented: $alertWrong) {
+                    Alert(
+                        title: Text("Wrong"),
+                        message: Text("input exept intager number"),
+                        dismissButton: .default(Text("Got it!"))
+                    )
+                }
                 .navigationTitle("Add new expense")
             }
     //

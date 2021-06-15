@@ -7,21 +7,29 @@
 
 import SwiftUI
 
-//struct User: Codable {
-//    var firstName: String
-//    var lastName: String
-//}
+// Challenge 2
+struct TextColor: View {
+    var num: Int
+
+    var body: some View {
+        if num <= 10 {
+            Text("\(num)")
+                .foregroundColor(.green)
+        }
+        if num > 10 &&  num <= 100{
+            Text("\(num)")
+                .foregroundColor(.blue)
+        }
+        if num > 100 {
+            Text("\(num)")
+                .foregroundColor(.red)
+        }
+    }
+}
 struct ContentView: View {
     @ObservedObject var expenses = Expense()
     @State var showingAddView = false
-//    @State private var user = User(firstName: "Taylor", lastName: "Swift")
 
-//    @State private var tapCount = UserDefaults.standard.integer(forKey: "Tap")
-//    @State private var numbers = [Int]()
-//    @State private var currentNumber = 1
-//
-
-//    function to allow delete from list by swap Left
     func removeRows(at offsets: IndexSet) {
         expenses.items.remove(atOffsets: offsets)
     }
@@ -37,46 +45,25 @@ struct ContentView: View {
                         }
 
                         Spacer()
-                        Text("$\(item.amount)")
+                        TextColor(num: item.amount)
+                        
                     }
                 }.onDelete(perform: removeRows)
             }
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading:
                                     Button(action: {
                                         self.showingAddView = true
-//                                        let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
-//                                        self.expenses.items.append(expense)
+                                        
                                     }) {
                                         Image(systemName: "plus")
-                                    }
+                                    },
+//                                Challenge 1
+                                trailing: EditButton()
                                 )
             .navigationTitle("iExpense")
         }.sheet(isPresented: $showingAddView) {
             AddView(expenses: self.expenses)
         }
-//        Button("Save User") {
-//            let encoder = JSONEncoder()
-//
-//            if let data = try? encoder.encode(self.user) {
-//                UserDefaults.standard.set(data, forKey: "UserData")
-//            }
-//        }
-//        NavigationView{
-//            VStack {
-//                List {
-//                    ForEach(numbers, id: \.self) {
-//                        Text("\($0)")
-//                    }
-//                    .onDelete(perform: removeRows)
-//                }
-//
-//                Button("Add Number") {
-//                    self.numbers.append(self.currentNumber)
-//                    self.currentNumber += 1
-//                }
-//            }
-//            .navigationBarItems(leading: EditButton())
-//        }
     }
 }
 
